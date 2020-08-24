@@ -4,6 +4,7 @@ import domain.TicketOffer;
 import repository.TicketRepository;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class TicketManager {
     private TicketRepository repository;
@@ -12,7 +13,7 @@ public class TicketManager {
         this.repository = repository;
     }
 
-    public TicketOffer[] findAll(String from, String to) {
+    public TicketOffer[] findAll(String from, String to, Comparator<TicketOffer>comparator) {
         TicketOffer[] result = new TicketOffer[0];
         for (TicketOffer offer : repository.getAll()) {
             if (offer.getAirportDeparture().equalsIgnoreCase(from) && offer.getAirportArrival().equalsIgnoreCase(to)) {
@@ -22,7 +23,7 @@ public class TicketManager {
                 result = tmp;
             }
         }
-        Arrays.sort(result);
+        Arrays.sort(result,comparator);
         return result;
     }
 }

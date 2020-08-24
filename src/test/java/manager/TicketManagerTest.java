@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.TicketRepository;
 
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TicketManagerTest {
@@ -29,14 +31,14 @@ class TicketManagerTest {
 
     @Test
     void shouldFindAll() {
-        TicketOffer[]actual = manager.findAll("SVO","KLD");
+        TicketOffer[]actual = manager.findAll("SVO","KLD",ticketOffer1);
         TicketOffer[]expected = new TicketOffer[]{ticketOffer1,ticketOffer2,ticketOffer5};
         assertArrayEquals(actual,expected);
 
     }
     @Test
     void shouldNoFindTicket(){
-        TicketOffer[]actual = manager.findAll("LED","SVO");
+        TicketOffer[]actual = manager.findAll("LED","SVO",ticketOffer1);
         TicketOffer[]expected = new TicketOffer[0];
         assertArrayEquals(actual,expected);
 
