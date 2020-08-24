@@ -9,7 +9,7 @@ import java.util.Comparator;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class TicketOffer implements  Comparator<TicketOffer>,Comparable<TicketOffer> {
+public class TicketOffer implements Comparable<TicketOffer> {
     private int id;
     private int cost;
     private String airportDeparture;
@@ -21,8 +21,5 @@ public class TicketOffer implements  Comparator<TicketOffer>,Comparable<TicketOf
         return cost - ticketOffer.cost;
     }
 
-    @Override
-    public int compare(TicketOffer t1, TicketOffer t2) {
-        return (int) (t1.getTravelTime()-t2.getTravelTime());
-    }
+
 }

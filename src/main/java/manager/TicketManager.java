@@ -13,7 +13,20 @@ public class TicketManager {
         this.repository = repository;
     }
 
-    public TicketOffer[] findAll(String from, String to, Comparator<TicketOffer>comparator) {
+    public TicketOffer[] findAll(String from, String to) {
+        TicketOffer[] result = new TicketOffer[0];
+        for (TicketOffer offer : repository.getAll()) {
+            if (offer.getAirportDeparture().equalsIgnoreCase(from) && offer.getAirportArrival().equalsIgnoreCase(to)) {
+                TicketOffer[] tmp = new TicketOffer[result.length + 1];
+                System.arraycopy(result, 0, tmp, 0, result.length);
+                tmp[tmp.length - 1] = offer;
+                result = tmp;
+            }
+        }
+        Arrays.sort(result);
+        return result;
+    }
+    public TicketOffer[] findAll(String from, String to,Comparator<TicketOffer>comparator) {
         TicketOffer[] result = new TicketOffer[0];
         for (TicketOffer offer : repository.getAll()) {
             if (offer.getAirportDeparture().equalsIgnoreCase(from) && offer.getAirportArrival().equalsIgnoreCase(to)) {
